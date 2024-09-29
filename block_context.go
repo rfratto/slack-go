@@ -7,7 +7,7 @@ package slack
 type ContextBlock struct {
 	Type            MessageBlockType `json:"type"`
 	BlockID         string           `json:"block_id,omitempty"`
-	ContextElements ContextElements  `json:"elements"`
+	ContextElements *ContextElements `json:"elements"`
 }
 
 // BlockType returns the type of the block
@@ -21,7 +21,7 @@ type ContextElements struct {
 
 // NewContextBlock returns a new instance of a context block
 func NewContextBlock(blockID string, mixedElements ...MixedElement) *ContextBlock {
-	elements := ContextElements{
+	elements := &ContextElements{
 		Elements: mixedElements,
 	}
 	return &ContextBlock{
